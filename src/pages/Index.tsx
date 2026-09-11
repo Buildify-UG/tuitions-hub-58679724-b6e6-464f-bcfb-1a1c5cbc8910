@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Star, MapPin, Clock, DollarSign, Search, Filter, Heart, MessageSquare } from 'lucide-react';
 
 interface Tutor {
@@ -71,6 +72,7 @@ const tutors: Tutor[] = [
 ];
 
 export default function Index() {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -103,7 +105,10 @@ export default function Index() {
           </div>
           <nav className="flex items-center gap-6">
             <button className="text-muted-foreground hover:text-foreground transition">Become a Tutor</button>
-            <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition">
+            <button 
+              onClick={() => navigate('/auth/login')}
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition"
+            >
               Sign In
             </button>
           </nav>
